@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 # Crispy Settings
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Login Settings
+
+LOGIN_REDIRECT_URL = 'index'
