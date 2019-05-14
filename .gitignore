@@ -1,6 +1,8 @@
 .DS_STORE
 src/db.sqlite3
 .vscode
+media
+
 
 # Virtualenv related
 bin/
