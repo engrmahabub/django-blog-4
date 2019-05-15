@@ -8,7 +8,7 @@ Full-Featured Blog with djnago web framework.
 Screenshots
 =
 <img src="screenshots/index.png" width=400><img src="screenshots/login.png" width=400>
-<img src="screenshots/profile.png" width=500><img src="screenshots/new_post.png" width=500>
+<img src="screenshots/profile.png" width=400><img src="screenshots/new_post.png" width=400>
 
 Features 
 =
