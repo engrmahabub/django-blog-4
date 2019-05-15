@@ -26,4 +26,5 @@ TODOS
 - Change Style
 - More Options For New Post
 - Sidebar
+- Customize admin panel
 - ...
