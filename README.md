@@ -25,7 +25,7 @@ How to use
 > Make sure python3 and git is installed.
 ```
 git clone https://github.com/pubuser7/django-blog.git && cd django-blog
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Migrate & Run Server
