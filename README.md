@@ -5,6 +5,13 @@
 
 Full-Featured Blog with djnago web framework. 
 
+Screenshots
+=
+<img src="screenshots/index.png" width=500>
+<img src="screenshots/login.png" width=500>
+<img src="screenshots/profile.png" width=500>
+<img src="screenshots/new_post.png" width=500>
+
 Features 
 =
 - User Registration
@@ -49,4 +56,6 @@ TODOS
 - Search
 - Comments
 - Change Style
+- More Options For New Post
+- Sidebar
 - ...
