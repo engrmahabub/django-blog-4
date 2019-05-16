@@ -2,7 +2,7 @@
 src/db.sqlite3
 .vscode
 media/profile_pics
-static
+static-cdn
 
 # Virtualenv related
 bin/
