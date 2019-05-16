@@ -17,7 +17,10 @@
             {{ p_form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+                <a href="{% url 'password_change' %}" class="btn btn-outline-danger" role="button">Change Password</a>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">Update</button>
         </div>
     </form>
 </div>
