@@ -2,6 +2,7 @@ from .models import Post
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 from django.views.generic import (
     CreateView, 
     ListView, 
@@ -15,8 +16,18 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    ordering = ['-date_posted']
     paginate_by = 5
+
+    def get_queryset(self):
+        try:
+            keyword = self.request.GET['q']
+        except:
+            keyword = ''
+        if (keyword != ''):
+            object_list = self.model.objects.filter(Q(content__icontains=keyword) | Q(title__icontains=keyword))
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 class UserPostListView(ListView):
     model = Post

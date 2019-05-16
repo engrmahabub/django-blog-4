@@ -1,5 +1,10 @@
 {% extends "blog/base.html" %}
 {% block content %}
+<!-- Search Form -->
+<form class="form-inline my-2 my-lg-0 pb-2">
+    <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" style="width: 400px">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form> 
     {% for post in posts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
