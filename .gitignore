@@ -1,8 +1,8 @@
 .DS_STORE
 src/db.sqlite3
 .vscode
-media
-
+media/profile_pics
+static
 
 # Virtualenv related
 bin/
