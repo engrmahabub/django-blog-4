@@ -1,7 +1,7 @@
 .DS_STORE
 src/db.sqlite3
 .vscode
-media/profile_pics
+profile_pics
 static-cdn
 
 # Virtualenv related
