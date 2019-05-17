@@ -1,10 +1,11 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user_posts' object.author.username %}">{{ object.author }}</a>
+            <h4 class="article-title"><a href="{% url 'user_posts' object.author.username %}">{{ object.author }}</a></h4>
             <small class="text-muted">{{ object.date_objected|date:"F d, Y" }}</small>
             {% if object.author == user %}
             <div>
@@ -17,4 +18,46 @@
         <p class="article-content">{{ object.content }}</p>
     </div>
 </article>
+
+<!-- Comment Form -->
+{% if user.is_authenticated %}
+<div class="content-section">
+    <form method="POST" action="{% url 'add_comment' object.id %}">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add Comment</legend>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <textarea name="text" cols="40" rows="10" class="textarea form-control" style="height: 87px" required></textarea>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Comment</button>
+        </div>
+    </form>
+</div>
+{% else %}
+<a href="{% url 'login' %}" class="btn btn-success btn-lg btn-block mb-4" role="button" aria-pressed="true">Click Here to Sign In for post comment.</a>
+{% endif %}
+
+
+<!-- Comments -->
+{% for comment in post.comments.all %}
+{% if comment.approved_comment %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <h4 class="article-title"><a href="#">{{ comment.author }}</a></h4>
+            <small class="text-muted">{{ object.date_objected|date:"F d, Y" }}</small>
+        </div>
+        <p class="article-content">{{ comment.text|safe|linebreaks }}</p>
+    </div>
+</article>
+{% else %}
+<div class="alert alert-secondary" role="alert">
+    No Comment has been posted.
+  </div>
+{% endif %}
+{% endfor %}
+
+
 {% endblock content %}

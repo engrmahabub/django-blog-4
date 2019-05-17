@@ -1,8 +1,10 @@
-from .models import Post
-from django.shortcuts import render, get_object_or_404
+from .models import Post, Comment
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.views.generic import (
     CreateView, 
     ListView, 
@@ -78,3 +80,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+@login_required
+def add_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        user = User.objects.get(id=request.POST.get('user_id'))
+        text = request.POST.get('text')
+        Comment(author=user, post=post, text=text).save()
+        messages.success(request, "Your comment has been added successfully.")
+    else:
+        return redirect('post_detail', pk=pk)  
+    return redirect('post_detail', pk=pk)
