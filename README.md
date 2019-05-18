@@ -17,6 +17,9 @@ Features
 - User Login & Logout
 - User Profile
 - Create, Update, Edit & Delete Posts
+- Comments
+- Search
+- User Change Password
 - Password Reset
 
 How To Use
@@ -58,11 +61,10 @@ $ python manage.py shell
 
 TODOS
 =
-- User Change Password
-- Search
-- Comments
 - Change Style
 - More Options For New Post
 - Sidebar
 - Customize admin panel
+- reply comment
+- search for post any pages
 - ...
