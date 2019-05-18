@@ -53,8 +53,11 @@ $ python manage.py shell
 >>> import json
 >>> with open('posts.json') as f:
 ...     json_posts = json.load(f)
+...
 >>> for post in json_posts:
 ...     Post(title=post['title'], content=post['content'], author_id=post['user_id']).save()
+...
+>>> exit()
 ```
 > You can edit posts via admin panel or from corrent user added post.
 
