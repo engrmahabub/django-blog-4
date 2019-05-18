@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/django-2.0%20%7C%202.1%20%7C%202.2-success.svg)](https://djangoproject.com/)
 [![](https://img.shields.io/apm/l/vim-mode.svg)](https://choosealicense.com/licenses/mit/)
 
-Full-Featured Blog with djnago web framework. 
+Full-Featured Blog with Django web framework. 
 
 Screenshots
 =
@@ -28,7 +28,7 @@ How To Use
 > Make sure you have already installed python3 and git.
 ```
 $ git clone https://github.com/pubuser7/django-blog.git && cd django-blog
-$ pip insatll -r requirementes.txt
+$ pip install -r requirements.txt
 ```
 ## Migrate & Collect Static
 ```
@@ -61,13 +61,12 @@ $ python manage.py shell
 ```
 > You can edit posts via admin panel or from corrent user added post.
 
-
 TODOS
 =
 - Change Style
 - More Options For New Post
 - Sidebar
 - Customize admin panel
-- reply comment
-- search for post any pages
+- Reply comment
+- Search for post any pages
 - ...
