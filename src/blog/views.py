@@ -5,11 +5,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .forms import PostForm
 from django.views.generic import (
-    CreateView, 
-    ListView, 
-    DetailView, 
-    UpdateView, 
+    CreateView,
+    ListView,
+    DetailView,
+    UpdateView,
     DeleteView
 )
 
@@ -26,10 +27,12 @@ class PostListView(ListView):
         except:
             keyword = ''
         if (keyword != ''):
-            object_list = self.model.objects.filter(Q(content__icontains=keyword) | Q(title__icontains=keyword))
+            object_list = self.model.objects.filter(
+                Q(content__icontains=keyword) | Q(title__icontains=keyword))
         else:
             object_list = self.model.objects.all()
         return object_list
+
 
 class UserPostListView(ListView):
     model = Post
@@ -41,13 +44,14 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
+
 class PostDetailView(DetailView):
     model = Post
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -68,6 +72,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
@@ -78,8 +83,10 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
 
 @login_required
 def add_comment(request, pk):
@@ -90,5 +97,5 @@ def add_comment(request, pk):
         Comment(author=user, post=post, text=text).save()
         messages.success(request, "Your comment has been added successfully.")
     else:
-        return redirect('post_detail', pk=pk)  
+        return redirect('post_detail', pk=pk)
     return redirect('post_detail', pk=pk)
