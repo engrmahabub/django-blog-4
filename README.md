@@ -21,6 +21,7 @@ Features
 - Search
 - User Change Password
 - Password Reset
+- Customized admin panel
 
 How To Use
 =
@@ -66,7 +67,6 @@ TODOS
 - Change Style
 - More Options For New Post
 - Sidebar
-- Customize admin panel
 - Reply comment
 - Search for post any pages
 - ...
