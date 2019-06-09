@@ -36,6 +36,23 @@
     <p class="lead">{{ object.content|safe|linebreaks }}</p>
     <hr>
 
+    <!-- Like -->
+    {% if user.is_authenticated %}
+    <div class="text-center">
+        <a id="like" style="cursor: pointer;" class="text-center" data-url="{% url 'like_api' object.pk %}"><i
+                style="color: red" class="
+                like-icon
+                {% if user in object.liked.all %}
+                fas fa-heart fa-3x
+                {% else %}
+                far fa-heart fa-3x
+                {% endif %}
+                " id="like-icon"></i></a>
+        <h6 style="color: red">{{object.liked.count}}</h6>
+    </div>
+    {% endif %}
+
+
     <!-- Comment Form -->
     {% if user.is_authenticated %}
     <div class="card my-4">
@@ -52,9 +69,9 @@
         </div>
     </div>
     {% else %}
-    <a href="{% url 'login' %}" class="btn btn-success btn-lg btn-block mb-4" role="button" aria-pressed="true">Click
-        Here
-        to Sign In for post comment.</a>
+    <a href="{% url 'login' %}" class="btn btn-success btn-lg btn-block mb-4">
+        Sign In for comment and like the post.
+    </a>
     {% endif %}
 
     <!-- Single Comments -->
